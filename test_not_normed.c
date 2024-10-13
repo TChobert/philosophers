@@ -2,6 +2,6 @@
 
 int	main()
 {
-	printf("This file is not normed !"\n);
+	printf("This file is not normed !\n");
 	return 0;
 }
