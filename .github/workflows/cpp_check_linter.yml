@@ -1,0 +1,30 @@
+name: C Linter Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cppcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install cppcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cppcheck
+
+      - name: Run cppcheck
+        run: |
+          cppcheck --enable=all --xml --xml-version=2 . 2> cppcheck_output.xml || true
+          cat cppcheck_output.xml
+          if [ -s cppcheck_output.xml ]; then
+            echo "cppcheck errors found:"
+            exit 1
+          else
+            echo "cppcheck test is OK !"
+          fi
