@@ -24,5 +24,12 @@ jobs:
 
       - name: Run Norminette
         run: |
-          norminette . > norminette_output.txt || true
+          run: |
+          norminette . > norminette_output.txt
           cat norminette_output.txt
+          if [ -s norminette_output.txt ]; then
+            echo "This branch contain norm errors ! :"
+            exit 1
+          else
+            echo "Norminette check OK !."
+          fi
