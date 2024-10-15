@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:50:49 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/15 19:59:35 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:40:48 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	display_invalid_philos_number_msg(void)
 {
-	ft_dprintf(STDERR_FILENO, "Invalid number of philosophers."
-		"Please enter a positive value lower or equal to int max.");
+	ft_dprintf(STDERR_FILENO, "Error : Invalid number of philosophers.\n"
+		"Please enter a positive value lower or equal to int max!");
 }
 
 void	errors_displaying(t_parsing_error_status parsing_error)
