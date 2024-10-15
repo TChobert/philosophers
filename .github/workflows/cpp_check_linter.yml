@@ -20,7 +20,7 @@ jobs:
 
       - name: Run cppcheck
         run: |
-          cppcheck --enable=all --xml --xml-version=2 . 2> cppcheck_output.xml || true
+          cppcheck --enable=all --xml --xml-version=2 -Iincludes . 2> cppcheck_output.xml || true
           cat cppcheck_output.xml
           if [ -s cppcheck_output.xml ]; then
             echo "cppcheck errors found:"
