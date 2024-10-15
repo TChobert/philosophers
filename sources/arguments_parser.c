@@ -6,13 +6,13 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:08:41 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/15 14:46:59 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:04:43 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_input_type	arguments_parser(char **arguments)
-{
-	
-}
+// t_input_type	arguments_parser(char **arguments)
+// {
+
+// }
