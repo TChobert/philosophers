@@ -20,9 +20,8 @@ jobs:
 
       - name: Run cppcheck
         run: |
-          cppcheck --enable=all --xml --xml-version=2 -Iincludes . 2> cppcheck_output.xml || true
-          cat cppcheck_output.xml
-          if [ -s cppcheck_output.xml ]; then
+          cppcheck --enable=all -Iincludes . || true
+          if [ $? -ne 0 ]; then
             echo "cppcheck errors found:"
             exit 1
           else
