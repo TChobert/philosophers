@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_displaying.c                                :+:      :+:    :+:   */
+/*   arguments_parser_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 19:50:49 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/15 19:59:35 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/15 20:09:02 by tchobert          #+#    #+#             */
+/*   Updated: 2024/10/15 20:37:39 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	display_invalid_philos_number_msg(void)
+bool	str_is_digit(char *str)
 {
-	ft_dprintf(STDERR_FILENO, "Invalid number of philosophers."
-		"Please enter a positive value lower or equal to int max.");
-}
+	size_t	i;
 
-void	errors_displaying(t_parsing_error_status parsing_error)
-{
-	if (parsing_error == INVALID_PHILOS_NUMBER)
-		display_invalid_philos_number_msg();
+	i = 0;
+	if (*str == '\0')
+		return (false);
+	while (str[i] != '\0')
+	{
+		if (ft_is_digit(str[i]) == false)
+			return (false);
+		++i;
+	}
+	return (true);
 }
