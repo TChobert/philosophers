@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 22:08:59 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/15 22:09:33 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:11:44 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ long	ft_atol(const char *nptr)
 		get_sign(nptr, &sign_flag);
 		++nptr;
 	}
-	while (ft_isdigit(nptr[i]))
+	while (ft_is_digit(nptr[i]))
 	{
 		converted_nb = converted_nb * 10 + (nptr[i] - 48);
 		++i;

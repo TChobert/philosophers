@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/15 22:12:07 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:42:03 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,13 @@ typedef struct s_philosopher
 }				t_philosopher;
 
 // PROTOTYPES //
+
+int				philo(char **user_input);
+
+t_input_status	arguments_parser(char **arguments, t_input_data *input_data);
+bool			str_is_digit(const char *str);
+bool			ft_is_digit(const int c);
+long			ft_atol(const char *nptr);
+void			errors_displaying(t_parsing_error_status parsing_error);
 
 #endif
