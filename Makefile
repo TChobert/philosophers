@@ -43,6 +43,7 @@ SRCS += arguments_parser.c
 SRCS += arguments_parser_utils.c
 SRCS += check_and_get_philos_number.c
 SRCS += check_and_get_time_to_die.c
+SRCS += check_and_get_time_to_eat.c
 SRCS += errors_displaying.c
 SRCS += errors_displaying_utils.c
 SRCS += ft_atol.c

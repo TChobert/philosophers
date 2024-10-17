@@ -6,11 +6,20 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:50:49 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 21:53:12 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 22:14:46 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+static void	display_invalid_time_to_eat_msg(void)
+{
+	ft_putstr_fd("Error : invalid time_to_eat duration!\n"
+		"Please enter a time in milliseconds beetween 1 and"
+		" 2147483647.\n"
+		"\nNote that your input must contain only digit characters\n",
+		STDERR_FILENO);
+}
 
 static void	display_invalid_time_to_die_msg(void)
 {
@@ -35,4 +44,6 @@ void	display_parsing_errors(t_parsing_error_status parsing_error)
 		display_invalid_philos_number_msg();
 	else if (parsing_error == INVALID_TIME_TO_DIE)
 		display_invalid_time_to_die_msg();
+	else if (parsing_error == INVALID_TIME_TO_EAT)
+		display_invalid_time_to_eat_msg();
 }

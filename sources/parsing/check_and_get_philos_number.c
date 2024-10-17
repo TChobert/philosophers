@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:07:05 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 18:32:36 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 22:23:53 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static t_argument_status	get_philos_number(const char *philos_input_number,
 }
 
 t_argument_status	check_and_get_philos_number(
-						char *philos_input_number, t_input_data *input_data)
+						const char *philos_input_number,
+						t_input_data *input_data)
 {
 	size_t					get_sign;
 
