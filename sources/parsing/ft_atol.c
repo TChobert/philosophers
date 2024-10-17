@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 22:08:59 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 15:11:44 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:01:12 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	get_sign(const char *c, int *sign)
 	}
 }
 
-long	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr, unsigned int *overflow_flag)
 {
 	long			converted_nb;
 	int				i;
@@ -40,9 +40,7 @@ long	ft_atol(const char *nptr)
 	converted_nb = 0;
 	sign_flag = 1;
 	while (is_space(nptr))
-	{
 		++nptr;
-	}
 	if (is_sign(nptr))
 	{
 		get_sign(nptr, &sign_flag);
@@ -51,6 +49,11 @@ long	ft_atol(const char *nptr)
 	while (ft_is_digit(nptr[i]))
 	{
 		converted_nb = converted_nb * 10 + (nptr[i] - 48);
+		if (converted_nb > INT_MAX)
+		{
+			*overflow_flag = 1;
+			return (0);
+		}
 		++i;
 	}
 	return (converted_nb * sign_flag);

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 16:42:03 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 21:52:34 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef enum e_parsing_error_status
 {
 	INVALID_PHILOS_NUMBER,
+	INVALID_TIME_TO_DIE,
 	INVALID_
 }			t_parsing_error_status;
 
@@ -51,22 +52,33 @@ typedef enum e_argument_status
 
 typedef struct s_input_data
 {
-	unsigned long	philos_number;
+	unsigned int		philos_number;
+	unsigned long long	time_to_die;
 }				t_input_data;
 
-typedef struct s_philosopher
-{
-	unsigned int	id;
-}				t_philosopher;
+// typedef struct s_philosopher
+// {
+// 	unsigned int	id;
+// }				t_philosopher;
 
 // PROTOTYPES //
 
-int				philo(char **user_input);
+int					philo(char **user_input);
 
-t_input_status	arguments_parser(char **arguments, t_input_data *input_data);
-bool			str_is_digit(const char *str);
-bool			ft_is_digit(const int c);
-long			ft_atol(const char *nptr);
-void			errors_displaying(t_parsing_error_status parsing_error);
+t_input_status		arguments_parser(char **arguments,
+						t_input_data *input_data);
+t_argument_status	check_and_get_philos_number(
+						char *philos_input_number, t_input_data *input_data);
+t_argument_status	check_and_get_time_to_die(
+						const char *time_to_die_input,
+						t_input_data *input_data);
+
+bool				str_is_digit(const char *str);
+bool				ft_is_digit(const int c);
+long				ft_atol(const char *nptr, unsigned int *overflow_flag);
+void				display_parsing_errors(
+						t_parsing_error_status parsing_error);
+size_t				ft_strlen(const char *str);
+void				ft_putstr_fd(char *s, int fd);
 
 #endif
