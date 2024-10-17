@@ -76,12 +76,12 @@ $(OBJS_DIR):
 	@mkdir $@
 
 clean:
-	@$(RM) -R $(OBJS_DIR)
-	@echo"$(GREEN)Clean completed!$(RESET)"
+	@$(RM) -r $(OBJS_DIR)
+	@echo "$(GREEN)Clean completed!$(RESET)"
 
-flcean: clean
+fclean: clean
 	@$(RM) $(NAME)
-	@echo"$(GREEN)Full clean completed !$(RESET)"
+	@echo "$(GREEN)Full clean completed !$(RESET)"
 
 re: fclean all
 
