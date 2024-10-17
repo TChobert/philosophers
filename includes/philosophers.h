@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 22:23:40 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/17 22:42:45 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef enum e_parsing_error_status
 {
 	INVALID_PHILOS_NUMBER,
 	INVALID_TIME_TO_DIE,
-	INVALID_TIME_TO_EAT
+	INVALID_TIME_TO_EAT,
+	INVALID_TIME_TO_SLEEP
 }			t_parsing_error_status;
 
 typedef enum e_input_status
@@ -55,6 +56,7 @@ typedef struct s_input_data
 	unsigned int		philos_number;
 	unsigned long		time_to_die;
 	unsigned long		time_to_eat;
+	unsigned long		time_to_sleep;
 }				t_input_data;
 
 // typedef struct s_philosopher
@@ -75,6 +77,9 @@ t_argument_status	check_and_get_time_to_die(
 						const char *time_to_die_input,
 						t_input_data *input_data);
 t_argument_status	check_and_get_time_to_eat(const char *time_to_eat_input,
+						t_input_data *input_data);
+t_argument_status	check_and_get_time_to_sleep(
+						const char *time_to_sleep_input,
 						t_input_data *input_data);
 
 bool				str_is_digit(const char *str);
