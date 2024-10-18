@@ -53,6 +53,20 @@ SRCS += ft_atol.c
 
 vpath %.c $(SRCS_DIR)
 
+## SOURCES TESTS ##
+
+TESTS_SRCS_DIR += ./tests/parsing
+
+TESTS_SRCS += tests_parsing.c
+
+UNITY_SRC := Unity/src/unity.c
+
+vpath %.c $(TESTS_SRCS_DIR)
+
+## TESTS INCLUDES ##
+
+TESTS_INCLUDES := Unity/src
+
 ## HEADERS ##
 
 HEADERS := philosophers.h
@@ -82,6 +96,9 @@ $(OBJS): $(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
 $(OBJS_DIR):
 	@mkdir $@
 
+tests: $(TESTS_SRCS) $(SRCS) $(UNITY_SRC)
+	$(CC) $(CFLAGS) -I $(TESTS_INCLUDES) -I $(INCLUDES) -o tests_unit $^
+
 clean:
 	@$(RM) -r $(OBJS_DIR)
 	@echo "$(GREEN)Clean completed!$(RESET)"
@@ -92,4 +109,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re tests
