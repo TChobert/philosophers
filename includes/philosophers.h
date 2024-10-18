@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 22:42:45 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:50:47 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef enum e_parsing_error_status
 	INVALID_PHILOS_NUMBER,
 	INVALID_TIME_TO_DIE,
 	INVALID_TIME_TO_EAT,
-	INVALID_TIME_TO_SLEEP
+	INVALID_TIME_TO_SLEEP,
+	INVALID_MEALS_NUMBER
 }			t_parsing_error_status;
 
 typedef enum e_input_status
@@ -57,6 +58,7 @@ typedef struct s_input_data
 	unsigned long		time_to_die;
 	unsigned long		time_to_eat;
 	unsigned long		time_to_sleep;
+	unsigned long		meals_number;
 }				t_input_data;
 
 // typedef struct s_philosopher
@@ -65,6 +67,8 @@ typedef struct s_input_data
 // }				t_philosopher;
 
 // PROTOTYPES //
+
+// PARSING :
 
 int					philo(char **user_input);
 
@@ -81,6 +85,14 @@ t_argument_status	check_and_get_time_to_eat(const char *time_to_eat_input,
 t_argument_status	check_and_get_time_to_sleep(
 						const char *time_to_sleep_input,
 						t_input_data *input_data);
+t_argument_status	check_and_get_number_of_meals(
+						const char *meals_input_number,
+						t_input_data *input_data);
+void				display_invalid_meals_number_msg(void);
+void				display_invalid_time_to_sleep_msg(void);
+void				display_invalid_time_to_eat_msg(void);
+void				display_invalid_time_to_die_msg(void);
+void				display_invalid_philos_number_msg(void);
 
 bool				str_is_digit(const char *str);
 bool				ft_is_digit(const int c);

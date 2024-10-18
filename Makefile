@@ -45,8 +45,10 @@ SRCS += check_and_get_philos_number.c
 SRCS += check_and_get_time_to_die.c
 SRCS += check_and_get_time_to_eat.c
 SRCS += check_and_get_time_to_sleep.c
+SRCS += check_and_get_number_of_meals.c
 SRCS += errors_displaying.c
 SRCS += errors_displaying_utils.c
+SRCS += errors_messages.c
 SRCS += ft_atol.c
 
 vpath %.c $(SRCS_DIR)
