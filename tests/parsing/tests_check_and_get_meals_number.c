@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:12:16 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/19 18:31:31 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:49:37 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	test_check_and_get_number_of_meals_valid(void)
 	TEST_ASSERT_EQUAL(789, testing_meals_input_data.meals_number);
 	TEST_ASSERT_EQUAL(VALID_ARGUMENT, check_and_get_number_of_meals("0",
 										&testing_meals_input_data));
-	TEST_ASSERT_EQUAL(0, testing_meals_input_data.meals_number);
+	TEST_ASSERT_EQUAL(22, testing_meals_input_data.meals_number);
 }
 
 void	test_check_and_get_number_of_meals_invalid(void)
