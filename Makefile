@@ -36,9 +36,12 @@ endif
 SRCS_DIR += ./sources
 SRCS_DIR += ./sources/parsing
 
+# main #
+
+MAIN += main.c
+
 # parsing #
 
-SRCS += main.c
 SRCS += arguments_parser.c
 SRCS += arguments_parser_utils.c
 SRCS += check_and_get_philos_number.c
@@ -55,9 +58,14 @@ vpath %.c $(SRCS_DIR)
 
 ## SOURCES TESTS ##
 
+TESTS_NAME := unit_tests
+
+TESTS_SRCS_DIR += ./tests
 TESTS_SRCS_DIR += ./tests/parsing
 
-TESTS_SRCS += tests_parsing.c
+TESTS_SRCS += main_tests.c
+TESTS_SRCS += tests_check_and_get_meals_number.c
+TESTS_SRCS += tests_check_and_get_philos_number.c
 
 UNITY_SRC := Unity/src/unity.c
 
@@ -65,7 +73,13 @@ vpath %.c $(TESTS_SRCS_DIR)
 
 ## TESTS INCLUDES ##
 
-TESTS_INCLUDES := Unity/src
+TESTS_HEADERS := tests.h
+
+TESTS_INCLUDES_DIR := ./tests/tests_includes
+
+UNITY_HEADER := unity.HEADERS
+
+UNITY_INCLUDES_DIR := ./Unity/src
 
 ## HEADERS ##
 
@@ -79,7 +93,8 @@ vpath %.h $(INCLUDES_DIR)
 
 OBJS_DIR := ./objs
 
-OBJS := $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
+OBJS += $(patsubst %.c, $(OBJS_DIR)/%.o, $(MAIN))
+OBJS += $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 ##### RULES #####
 
@@ -97,14 +112,14 @@ $(OBJS_DIR):
 	@mkdir $@
 
 tests: $(TESTS_SRCS) $(SRCS) $(UNITY_SRC)
-	$(CC) $(CFLAGS) -I $(TESTS_INCLUDES) -I $(INCLUDES) -o tests_unit $^
+	$(CC) $(CFLAGS) -I $(TESTS_INCLUDES_DIR) -I $(INCLUDES_DIR) -I $(UNITY_INCLUDES_DIR) -o $(TESTS_NAME) $^
 
 clean:
 	@$(RM) -r $(OBJS_DIR)
 	@echo "$(GREEN)Clean completed!$(RESET)"
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(TESTS_NAME)
 	@echo "$(GREEN)Full clean completed !$(RESET)"
 
 re: fclean all
