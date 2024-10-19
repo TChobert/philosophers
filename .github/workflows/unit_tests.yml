@@ -1,0 +1,29 @@
+name: Unit Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up C compiler
+      run: sudo apt-get install build-essential
+
+    - name: Install dependencies (if any)
+      run: |
+        sudo apt-get install unity-test
+
+    - name: Compile tests
+      run: |
+        make tests
+
+    - name: Run tests
+      run: |
+        ./tests_unit
