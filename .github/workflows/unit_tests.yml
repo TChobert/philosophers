@@ -16,9 +16,9 @@ jobs:
     - name: Set up C compiler
       run: sudo apt-get install build-essential
 
-    - name: Install dependencies (if any)
+    - name: Download Unity
       run: |
-        sudo apt-get install unity-test
+        git clone https://github.com/UnityTest/Unity.git Unity/src
 
     - name: Compile tests
       run: |
