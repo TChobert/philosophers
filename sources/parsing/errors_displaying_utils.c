@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors_displaying_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:09:26 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/18 20:19:01 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/17 18:37:09 by tchobert          #+#    #+#             */
+/*   Updated: 2024/10/17 18:37:45 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	philo(char **user_input)
+size_t	ft_strlen(const char *str)
 {
-	t_input_data	input_data;
+	size_t	i;
 
-	if (arguments_parser(user_input, &input_data) == INVALID_INPUT)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		++i;
+	}
+	return (i);
 }
 
-int	main(int ac, char **av)
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (ac < 5 || ac > 6)
-		return (EXIT_FAILURE);
-	return (philo(av + 1));
+	write(fd, s, ft_strlen(s));
 }

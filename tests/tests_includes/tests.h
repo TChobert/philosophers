@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:09:26 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/18 20:19:01 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/19 17:42:04 by tchobert          #+#    #+#             */
+/*   Updated: 2024/10/19 17:47:04 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#ifndef TESTS_H
+# define TESTS_H
 
-int	philo(char **user_input)
-{
-	t_input_data	input_data;
+// INCLUDES //
 
-	if (arguments_parser(user_input, &input_data) == INVALID_INPUT)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+# include "philosophers.h"
+# include "unity.h"
 
-int	main(int ac, char **av)
-{
-	if (ac < 5 || ac > 6)
-		return (EXIT_FAILURE);
-	return (philo(av + 1));
-}
+// PROTOTYPES //
+
+void	test_check_and_get_philos_number_valid(void);
+void	test_check_and_get_philos_number_invalid(void);
+void	test_check_and_get_number_of_meals_valid(void);
+void	test_check_and_get_number_of_meals_invalid(void);
+
+#endif
