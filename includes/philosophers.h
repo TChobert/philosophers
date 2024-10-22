@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/18 13:50:47 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:24:17 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <pthread.h>
 
 // DEFINES //
 
@@ -55,16 +56,23 @@ typedef enum e_argument_status
 typedef struct s_input_data
 {
 	unsigned int		philos_number;
+	unsigned int		forks_number;
 	unsigned long		time_to_die;
 	unsigned long		time_to_eat;
 	unsigned long		time_to_sleep;
 	unsigned long		meals_number;
 }				t_input_data;
 
-// typedef struct s_philosopher
-// {
-// 	unsigned int	id;
-// }				t_philosopher;
+typedef struct s_philosopher
+{
+	unsigned int	id;
+	unsigned long	last_meal_time;
+	pthread_t		*right_fork;
+	pthread_t		*left_fork;
+	unsigned int	time_to_die;
+	unsigned int	time_to_eat;
+	unsigned int	time_to_sleep;
+}				t_philosopher;
 
 // PROTOTYPES //
 

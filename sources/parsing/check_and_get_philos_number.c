@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:07:05 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/17 22:23:53 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:56:25 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static t_argument_status	get_philos_number(const char *philos_input_number,
 		return (INVALID_ARGUMENT);
 	}
 	input_data->philos_number = (unsigned int)philos_number;
+	input_data->forks_number = (unsigned int)philos_number;
 	return (VALID_ARGUMENT);
 }
 
