@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/21 16:24:17 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:41:05 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ typedef enum e_argument_status
 	VALID_ARGUMENT
 }			t_argument_status;
 
+typedef enum e_diner_status
+{
+	DINER_IS_CANCELLED,
+	DINER_TABLE_IS_READY,
+	DINER_IS_RUNNING,
+	DINER_IS_OVER
+}			t_diner_status;
+
 // STRUCTS //
 
 typedef struct s_input_data
@@ -65,14 +73,27 @@ typedef struct s_input_data
 
 typedef struct s_philosopher
 {
-	unsigned int	id;
-	unsigned long	last_meal_time;
-	pthread_t		*right_fork;
-	pthread_t		*left_fork;
-	unsigned int	time_to_die;
-	unsigned int	time_to_eat;
-	unsigned int	time_to_sleep;
+	bool				*dead_flag;
+	unsigned int		id;
+	unsigned long		last_meal_time;
+	unsigned long		number_of_meals_eaten;
+	unsigned long		time_to_die;
+	unsigned long		time_to_eat;
+	unsigned long		time_to_sleep;
+	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		*left_fork;
 }				t_philosopher;
+
+typedef struct	s_table
+{
+	bool			dead_flag;
+	unsigned int	philos_number;
+	unsigned int	forks_number;
+	unsigned long	time_to_die;
+	unsigned long	time_to_eat;
+	unsigned long	time_to_sleep;
+	unsigned long	meals_number;
+}				t_table;
 
 // PROTOTYPES //
 
@@ -109,5 +130,11 @@ void				display_parsing_errors(
 						t_parsing_error_status parsing_error);
 size_t				ft_strlen(const char *str);
 void				ft_putstr_fd(char *s, int fd);
+
+// DINER :
+
+int				diner_story(t_input_data *input_data);
+t_diner_status	host_set_the_table_for_diner(t_input_data *input_data,
+					t_table *diner_table);
 
 #endif

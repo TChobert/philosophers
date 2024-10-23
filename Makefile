@@ -35,6 +35,7 @@ endif
 
 SRCS_DIR += ./sources
 SRCS_DIR += ./sources/parsing
+SRCS_DIR += ./sources/run_diner
 
 # main #
 
@@ -54,6 +55,10 @@ SRCS += errors_displaying_utils.c
 SRCS += errors_messages.c
 SRCS += ft_atol.c
 
+# run diner #
+
+SRCS += diner_host.c
+
 vpath %.c $(SRCS_DIR)
 
 ## SOURCES TESTS ##
@@ -62,10 +67,12 @@ TESTS_NAME := unit_tests
 
 TESTS_SRCS_DIR += ./tests
 TESTS_SRCS_DIR += ./tests/parsing
+TESTS_SRCS_DIR += ./tests/diner
 
 TESTS_SRCS += main_tests.c
 TESTS_SRCS += tests_check_and_get_meals_number.c
 TESTS_SRCS += tests_check_and_get_philos_number.c
+TESTS_SRCS += tests_host_set_the_table_for_the_diner.c
 
 UNITY_SRC := Unity/src/unity.c
 
