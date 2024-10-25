@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/25 17:02:38 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:29:56 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 // DEFINES //
 
@@ -66,6 +67,12 @@ typedef enum e_philo_initialization
 	VALID_PHILO_INITIALIZATION
 }			t_philo_initialization;
 
+typedef enum e_time_update_status
+{
+	TIME_UPDATE_ERROR = -1,
+	TIME_UPDATE_SUCCESS
+}			t_time_update_status;
+
 // STRUCTS //
 
 typedef struct s_input_data
@@ -78,12 +85,23 @@ typedef struct s_input_data
 	unsigned long		meals_number;
 }				t_input_data;
 
+typedef struct s_diner_informations
+{
+	unsigned int	philos_number;
+	unsigned int	forks_number;
+	unsigned long	time_to_die;
+	unsigned long	time_to_eat;
+	unsigned long	time_to_sleep;
+	unsigned long	meals_number;
+}				t_diner_informations;
+
 typedef struct s_table
 {
 	unsigned int			dead_flag;
 	unsigned int			all_meals_eaten;
 	pthread_mutex_t			dead_flag_mutex;
 	pthread_mutex_t			all_meals_eaten_mutex;
+	pthread_mutex_t			write_lock;
 	t_diner_informations	diner_informations;
 	pthread_mutex_t			forks[MAX_PHILOSOPHERS];
 }				t_table;
@@ -103,16 +121,6 @@ typedef struct s_philo
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*left_fork;
 }				t_philo;
-
-typedef struct s_diner_informations
-{
-	unsigned int	philos_number;
-	unsigned int	forks_number;
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
-	unsigned long	meals_number;
-}				t_diner_informations;
 
 // PROTOTYPES //
 
@@ -152,9 +160,13 @@ void				ft_putstr_fd(char *s, int fd);
 
 // DINER :
 
-int				diner_story(t_input_data *input_data);
-t_diner_status	host_get_diner_informations(t_input_data *input_data,
-					t_diner_informations *diner_informations);
-t_diner_status	host_set_the_table_for_the_diner(t_table *diner_table);
+int						diner_story(t_input_data *input_data);
+t_diner_status			host_get_diner_informations(t_input_data *input_data,
+							t_diner_informations *diner_informations);
+t_diner_status			host_set_the_table_for_the_diner(t_table *diner_table);
+t_diner_status			host_launch_the_diner(t_table *diner_table,
+							t_philo philos[]);
+
+t_time_update_status	update_last_meal_time(t_philo *philo);
 
 #endif

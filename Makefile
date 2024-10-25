@@ -59,7 +59,10 @@ SRCS += ft_atol.c
 
 SRCS += diner_host.c
 SRCS += host_set_the_table_for_the_diner.c
-SRCS += host_get_the_diner_informations.c
+SRCS += host_get_diner_informations.c
+SRCS += host_launch_the_diner.c
+
+SRCS += update_last_meal_time.c
 
 vpath %.c $(SRCS_DIR)
 
