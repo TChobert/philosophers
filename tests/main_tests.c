@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:47:31 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/23 17:17:07 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:16:05 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,13 @@ int	main(void)
 	sleep(2);
 	RUN_TEST(test_check_and_get_philos_number_valid);
 	RUN_TEST(test_check_and_get_philos_number_invalid);
-	printf("\033[32m\nTESTING FUNCTION_HOST_SET_THE_TABLE_FOR_DINER:\n\n\033[0m");
+	printf("\033[32m\nTESTING FUNCTION_HOST_GET_DINER_INFORMATIONS:\n\n\033[0m");
 	sleep(2);
 	RUN_TEST(test_host_get_diner_informations_valid);
 	RUN_TEST(test_host_get_diner_informations_invalid);
+	printf("\033[32m\nTESTING FUNCTION_HOST_SET_THE_TABLE_FOR_DINER:\n\n\033[0m");
+	sleep(2);
+	RUN_TEST(test_host_set_the_table_for_the_diner_valid);
+	RUN_TEST(test_host_set_the_table_for_the_diner_invalid);
 	return (UNITY_END());
 }

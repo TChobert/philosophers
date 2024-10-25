@@ -58,6 +58,8 @@ SRCS += ft_atol.c
 # run diner #
 
 SRCS += diner_host.c
+SRCS += host_set_the_table_for_the_diner.c
+SRCS += host_get_the_diner_informations.c
 
 vpath %.c $(SRCS_DIR)
 
@@ -72,7 +74,8 @@ TESTS_SRCS_DIR += ./tests/diner
 TESTS_SRCS += main_tests.c
 TESTS_SRCS += tests_check_and_get_meals_number.c
 TESTS_SRCS += tests_check_and_get_philos_number.c
-TESTS_SRCS += tests_host_set_the_table_for_the_diner.c
+TESTS_SRCS += test_host_get_diner_informations.c
+TESTS_SRCS += test_host_set_the_table_for_the_diner.c
 
 UNITY_SRC := Unity/src/unity.c
 

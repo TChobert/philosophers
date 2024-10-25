@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/23 19:11:35 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/25 17:02:38 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,18 @@ typedef enum e_argument_status
 
 typedef enum e_diner_status
 {
-	DINER_IS_CANCELLED,
+	DINER_IS_CANCELED,
 	DINER_INFORMATIONS_REGISTERED,
 	DINER_TABLE_IS_READY,
 	DINER_IS_RUNNING,
 	DINER_IS_OVER
 }			t_diner_status;
+
+typedef enum e_philo_initialization
+{
+	INVALID_PHILO_INITIALIZATION = -1,
+	VALID_PHILO_INITIALIZATION
+}			t_philo_initialization;
 
 // STRUCTS //
 
@@ -72,16 +78,28 @@ typedef struct s_input_data
 	unsigned long		meals_number;
 }				t_input_data;
 
+typedef struct s_table
+{
+	unsigned int			dead_flag;
+	unsigned int			all_meals_eaten;
+	pthread_mutex_t			dead_flag_mutex;
+	pthread_mutex_t			all_meals_eaten_mutex;
+	t_diner_informations	diner_informations;
+	pthread_mutex_t			forks[MAX_PHILOSOPHERS];
+}				t_table;
+
 typedef struct s_philo
 {
 	pthread_t			thread_id;
+	t_table				*table;
 	unsigned int		id;
+	bool				dead_flag;
 	unsigned long		last_meal_time;
 	unsigned long		number_of_meals_eaten;
 	unsigned long		time_to_die;
 	unsigned long		time_to_eat;
 	unsigned long		time_to_sleep;
-	bool				*dead_flag;
+	unsigned long		meals_number;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*left_fork;
 }				t_philo;
@@ -95,15 +113,6 @@ typedef struct s_diner_informations
 	unsigned long	time_to_sleep;
 	unsigned long	meals_number;
 }				t_diner_informations;
-
-typedef struct s_table
-{
-	bool					dead_flag;
-	t_diner_informations	diner_informations;
-	pthread_mutex_t			forks[200];
-	pthread_t				philos[200];
-}				t_table;
-
 
 // PROTOTYPES //
 
@@ -146,5 +155,6 @@ void				ft_putstr_fd(char *s, int fd);
 int				diner_story(t_input_data *input_data);
 t_diner_status	host_get_diner_informations(t_input_data *input_data,
 					t_diner_informations *diner_informations);
+t_diner_status	host_set_the_table_for_the_diner(t_table *diner_table);
 
 #endif

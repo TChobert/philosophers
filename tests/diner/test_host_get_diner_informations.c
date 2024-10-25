@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_host_set_the_table_for_the_diner.c           :+:      :+:    :+:   */
+/*   test_host_get_diner_informations.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:50:30 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/23 17:16:42 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:02:15 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-void	set_input_data(t_input_data	*input_data)
+static void	set_input_data(t_input_data	*input_data)
 {
 	input_data->philos_number = 185;
 	input_data->forks_number = 185;
@@ -48,8 +48,8 @@ void	test_host_get_diner_informations_invalid(void)
 	input_data_null_ptr = NULL;
 	infos_null_ptr = NULL;
 	set_input_data(&input_data);
-	TEST_ASSERT_EQUAL(DINER_IS_CANCELLED, host_get_diner_informations(
+	TEST_ASSERT_EQUAL(DINER_IS_CANCELED, host_get_diner_informations(
 		input_data_null_ptr, &diner_informations));
-	TEST_ASSERT_EQUAL(DINER_IS_CANCELLED, host_get_diner_informations(
+	TEST_ASSERT_EQUAL(DINER_IS_CANCELED, host_get_diner_informations(
 		&input_data, infos_null_ptr));
 }
