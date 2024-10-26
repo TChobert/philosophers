@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:28:23 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/25 17:16:00 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:54:23 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_diner_status	init_table_mutexes(t_table *diner_table)
 	size_t	i;
 
 	i = 0;
-	if (pthread_mutex_init(&diner_table->dead_flag_mutex, NULL) != 0
+	if (pthread_mutex_init(&diner_table->dead_alarm_mutex, NULL) != 0
 		|| pthread_mutex_init(&diner_table->all_meals_eaten_mutex, NULL) != 0)
 	{
 		ft_putstr_fd("An error occurs while intialising the table mutexes.\n",
@@ -45,7 +45,7 @@ t_diner_status	host_set_the_table_for_the_diner(t_table *diner_table)
 			STDERR_FILENO);
 		return (DINER_IS_CANCELED);
 	}
-	diner_table->dead_flag = 0;
+	diner_table->dead_alarm = 0;
 	diner_table->all_meals_eaten = 0;
 	return (init_table_mutexes(diner_table));
 }

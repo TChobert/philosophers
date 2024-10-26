@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:25:05 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/25 18:42:36 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:51:41 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	philo_routine_odd(t_philo *philo)
 {
-		pthread_mutex_lock(&philo->table->write_lock);
+		pthread_mutex_lock(&philo->table->table_microphone);
 		printf("I'm %d and i'm odd !\n", philo->id);
-		pthread_mutex_unlock(&philo->table->write_lock);
+		pthread_mutex_unlock(&philo->table->table_microphone);
 }
 
 static void	philo_routine_even(t_philo *philo)
 {
-		pthread_mutex_lock(&philo->table->write_lock);
+		pthread_mutex_lock(&philo->table->table_microphone);
 		printf("I'm %d and i'm even !\n", philo->id);
-		pthread_mutex_unlock(&philo->table->write_lock);
+		pthread_mutex_unlock(&philo->table->table_microphone);
 }
 
 static void	*philo_routine(void *current_philo_ptr)
