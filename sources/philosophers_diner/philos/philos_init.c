@@ -1,49 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   host_launch_the_diner.c                            :+:      :+:    :+:   */
+/*   philos_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 17:25:05 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/26 15:51:41 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/28 13:11:29 by tchobert          #+#    #+#             */
+/*   Updated: 2024/10/28 18:51:46 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	philo_routine_odd(t_philo *philo)
-{
-		pthread_mutex_lock(&philo->table->table_microphone);
-		printf("I'm %d and i'm odd !\n", philo->id);
-		pthread_mutex_unlock(&philo->table->table_microphone);
-}
-
-static void	philo_routine_even(t_philo *philo)
-{
-		pthread_mutex_lock(&philo->table->table_microphone);
-		printf("I'm %d and i'm even !\n", philo->id);
-		pthread_mutex_unlock(&philo->table->table_microphone);
-}
-
-static void	*philo_routine(void *current_philo_ptr)
-{
-	t_philo	*current_philo = (t_philo *)current_philo_ptr;
-
-	while (true)
-	{
-		if (current_philo->id % 2 == 0)
-		{
-			philo_routine_even(current_philo);
-		}
-		else if (current_philo-> id % 2 != 0)
-		{
-			philo_routine_odd(current_philo);
-		}
-		usleep(100);
-	}
-	return (NULL);
-}
 
 static t_philo_initialization	give_forks_to_current_philo(
 									t_table *diner_table,
@@ -84,7 +52,7 @@ static	t_philo_initialization	init_philo_basic_data(t_table *diner_table,
 	return (VALID_PHILO_INITIALIZATION);
 }
 
-static t_philo_initialization	init_philo_data(t_table *diner_table,
+t_philo_initialization	init_philo_data(t_table *diner_table,
 							t_philo *current_philo, size_t	id)
 {
 	if (diner_table == NULL || current_philo == NULL)
@@ -95,36 +63,5 @@ static t_philo_initialization	init_philo_data(t_table *diner_table,
 	if (give_forks_to_current_philo(diner_table, current_philo, id)
 		== INVALID_PHILO_INITIALIZATION)
 		return (INVALID_PHILO_INITIALIZATION);
-	if (update_last_meal_time(current_philo) == TIME_UPDATE_ERROR)
-		return (INVALID_PHILO_INITIALIZATION);
-	return (VALID_PHILO_INITIALIZATION);
-}
-
-t_diner_status	host_launch_the_diner(t_table *diner_table, t_philo philos[])
-{
-	size_t	i;
-
-	i = 0;
-	while (i < diner_table->diner_informations.philos_number)
-	{
-		if (init_philo_data(diner_table, &philos[i], i)
-			== INVALID_PHILO_INITIALIZATION)
-		{
-			ft_putstr_fd("An error occurs while intialising the philosophers"
-				" data.\n", STDERR_FILENO);
-			return (DINER_IS_CANCELED);
-		}
-		if (pthread_create(&philos[i].thread_id, NULL, philo_routine, &philos[i]) != 0)
-			return (DINER_IS_CANCELED);
-		++i;
-	}
-	i = 0;
-	// while (i < diner_table->diner_informations.philos_number)
-	// {
-
-	// }
-	while (1)
-	{
-	}
-	return (DINER_IS_RUNNING);
+	return (update_last_meal_time(current_philo));
 }

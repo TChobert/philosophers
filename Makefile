@@ -35,7 +35,10 @@ endif
 
 SRCS_DIR += ./sources
 SRCS_DIR += ./sources/parsing
-SRCS_DIR += ./sources/run_diner
+SRCS_DIR += ./sources/philosophers_diner
+SRCS_DIR += ./sources/philosophers_diner/host
+SRCS_DIR += ./sources/philosophers_diner/philos
+SRCS_DIR += ./sources/philosophers_diner/diner_utils
 
 # main #
 
@@ -61,8 +64,22 @@ SRCS += diner_host.c
 SRCS += host_set_the_table_for_the_diner.c
 SRCS += host_get_diner_informations.c
 SRCS += host_launch_the_diner.c
-
 SRCS += update_last_meal_time.c
+SRCS += get_current_time.c
+SRCS += philos_init.c ## RENAME !!
+
+# philos #
+
+SRCS += philos_routines.c
+SRCS += even_philo_routine.c
+SRCS += odd_philo_routine.c
+SRCS += philo_is_eating.c
+SRCS += forks_usage.c
+SRCS += microphone_usage.c
+SRCS += philo_is_speaking.c
+SRCS += philo_is_thinking.c
+SRCS += philo_is_sleeping.c
+SRCS += philo_is_eating.c
 
 vpath %.c $(SRCS_DIR)
 

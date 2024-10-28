@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/26 15:56:06 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:51:37 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 // DEFINES //
 
 # define MAX_PHILOSOPHERS 200
-
-// TYPEDEFS //
 
 // ENUMS //
 
@@ -73,6 +71,16 @@ typedef enum e_time_update_status
 	TIME_UPDATE_SUCCESS
 }			t_time_update_status;
 
+typedef enum e_philo_msg
+{
+	PHILO_TAKES_A_FORK,
+	PHILO_PUTS_BACK_A_FORK,
+	PHILO_IS_EATING,
+	PHILO_IS_SLEEPING,
+	PHILO_IS_THINKING,
+	PHILO_DIED
+}			t_philo_msg;
+
 // STRUCTS //
 
 typedef struct s_input_data
@@ -97,8 +105,10 @@ typedef struct s_diner_informations
 
 typedef struct s_table
 {
-	unsigned int			dead_alarm;
+	volatile t_diner_status	diner_status;
+	bool					dead_alarm;
 	unsigned int			all_meals_eaten_list;
+	pthread_mutex_t			diner_status_mutex;
 	pthread_mutex_t			dead_alarm_mutex;
 	pthread_mutex_t			all_meals_eaten_list_mutex;
 	pthread_mutex_t			table_microphone;
@@ -121,6 +131,10 @@ typedef struct s_philo
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*left_fork;
 }				t_philo;
+
+// TYPEDEFS //
+
+typedef	void (* t_speaking_functions)(t_philo *);
 
 // PROTOTYPES //
 
@@ -168,5 +182,12 @@ t_diner_status			host_launch_the_diner(t_table *diner_table,
 							t_philo philos[]);
 
 t_time_update_status	update_last_meal_time(t_philo *philo);
+
+t_philo_initialization	init_philo_data(t_table *diner_table,
+							t_philo *current_philo, size_t	id);
+
+// PHILOS_ROUTINES :
+
+void					*philo_routine(void *current_philo_ptr);
 
 #endif
