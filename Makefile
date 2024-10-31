@@ -31,6 +31,11 @@ ifeq ($(d), 3)
 		CFLAGS = Weverything
 endif
 
+ifeq ($(d), 4)
+		CFLAGS += -g3
+		CFLAGS += -O0
+endif
+
 ## SOURCES ##
 
 SRCS_DIR += ./sources
@@ -79,6 +84,7 @@ SRCS += microphone_usage.c
 SRCS += philo_is_speaking.c
 SRCS += philo_is_thinking.c
 SRCS += philo_is_sleeping.c
+SRCS += philos_speaking_functions.c
 
 # diner utils #
 

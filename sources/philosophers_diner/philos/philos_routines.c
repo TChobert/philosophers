@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:18:21 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 15:33:07 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:57:30 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,11 @@ t_diner_status	check_diner_status(t_philo *philo)
 	return (diner_status);
 }
 
-// static void	philo_routine_odd(t_philo *philo)
-// {
-// 		pthread_mutex_lock(&philo->table->table_microphone);
-// 		printf("I'm %d and i'm odd !\n", philo->id);
-// 		pthread_mutex_unlock(&philo->table->table_microphone);
-// }
-
 void	*philo_routine(void *current_philo_ptr)
 {
-	t_philo	*current_philo = (t_philo *)current_philo_ptr;
+	t_philo	*current_philo;
 
+	current_philo = (t_philo *)current_philo_ptr;
 	if (current_philo->id % 2 != 0)
 		ft_usleep(current_philo->time_to_eat);
 	while (true)
@@ -48,8 +42,6 @@ void	*philo_routine(void *current_philo_ptr)
 	}
 	return (NULL);
 }
-
-//usleep(100);
 
 // if (check_diner_status(current_philo) == DINER_IS_OVER)
 		// 	return (NULL);

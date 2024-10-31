@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 15:02:30 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:55:00 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,12 @@ void					philo_puts_right_fork(t_philo *philo);
 void					philo_puts_left_fork(t_philo *philo);
 void					philo_takes_the_microphone(t_philo *philo);
 void					philo_puts_back_the_microphone(t_philo *philo);
+
+void					philo_takes_a_fork_msg(t_philo *philo);
+void					philo_is_eating_msg(t_philo *philo);
+void					philo_is_sleeping_msg(t_philo *philo);
+void					philo_is_thinking_msg(t_philo *philo);
+void					philo_died_msg(t_philo *philo);
 
 int						ft_usleep(unsigned long milliseconds);
 unsigned long			get_current_time(void);

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_is_speaking.c                                :+:      :+:    :+:   */
+/*   diner_master.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 14:42:08 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 16:52:46 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/31 17:03:03 by tchobert          #+#    #+#             */
+/*   Updated: 2024/10/31 17:18:43 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_is_speaking(t_philo *philo, t_philo_msg message)
+t_diner_status	diner_master_checks_time_to_death(t_philo philos[])
 {
-	static t_speaking_functions	philo_speaking_functions[] = {
-		philo_takes_a_fork_msg,
-		philo_is_eating_msg,
-		philo_is_sleeping_msg,
-		philo_is_thinking_msg,
-		philo_died_msg
-	};
+	
+}
 
-	philo_speaking_functions[message](philo);
+t_diner_status	listen_to_what_is_happenig(t_table *diner_table, t_philo philos[])
+{
+	t_diner_status	diner_status;
+
+	diner_status = DINER_IS_RUNNING;
+	diner_status = diner_master_checks_time_to_death(philos);
+	diner_status = diner_master_checks_number_of_meals(philos);
+	return (diner_status);
 }
