@@ -36,6 +36,10 @@ ifeq ($(d), 4)
 		CFLAGS += -O0
 endif
 
+ifeq ($(d), 5)
+		CFLAGS += -fsanitize=thread -g3
+endif
+
 ## SOURCES ##
 
 SRCS_DIR += ./sources
