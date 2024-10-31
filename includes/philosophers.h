@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/28 18:51:37 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:02:30 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef enum e_time_update_status
 typedef enum e_philo_msg
 {
 	PHILO_TAKES_A_FORK,
-	PHILO_PUTS_BACK_A_FORK,
 	PHILO_IS_EATING,
 	PHILO_IS_SLEEPING,
 	PHILO_IS_THINKING,
@@ -189,5 +188,22 @@ t_philo_initialization	init_philo_data(t_table *diner_table,
 // PHILOS_ROUTINES :
 
 void					*philo_routine(void *current_philo_ptr);
+void					even_philo_routine(t_philo *philo);
+void					odd_philo_routine(t_philo *philo);
+
+void					philo_is_eating(t_philo *philo);
+void					philo_is_speaking(t_philo *philo, t_philo_msg message);
+void					philo_is_sleeping(t_philo *philo);
+void					philo_is_thinking(t_philo *philo);
+
+void					philo_takes_left_fork(t_philo *philo);
+void					philo_takes_right_fork(t_philo *philo);
+void					philo_puts_right_fork(t_philo *philo);
+void					philo_puts_left_fork(t_philo *philo);
+void					philo_takes_the_microphone(t_philo *philo);
+void					philo_puts_back_the_microphone(t_philo *philo);
+
+int						ft_usleep(unsigned long milliseconds);
+unsigned long			get_current_time(void);
 
 #endif

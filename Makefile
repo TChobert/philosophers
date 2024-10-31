@@ -79,7 +79,10 @@ SRCS += microphone_usage.c
 SRCS += philo_is_speaking.c
 SRCS += philo_is_thinking.c
 SRCS += philo_is_sleeping.c
-SRCS += philo_is_eating.c
+
+# diner utils #
+
+SRCS += ft_usleep.c
 
 vpath %.c $(SRCS_DIR)
 
