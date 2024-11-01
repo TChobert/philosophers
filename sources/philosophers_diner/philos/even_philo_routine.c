@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:05:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 14:59:28 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:12:34 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	even_philo_is_eating(t_philo *philo)
 {
 	philo_takes_left_fork(philo);
+	ft_usleep(10);
 	philo_takes_right_fork(philo);
 	philo_is_eating(philo);
 	philo_puts_left_fork(philo);

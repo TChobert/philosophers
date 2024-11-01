@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 16:55:00 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:42:24 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef enum e_diner_status
 	DINER_IS_CANCELED,
 	DINER_INFORMATIONS_REGISTERED,
 	DINER_TABLE_IS_READY,
+	GUESTS_ARE_INFORMED,
+	GUESTS_ARE_PLACED,
 	DINER_IS_RUNNING,
 	DINER_IS_OVER
 }			t_diner_status;

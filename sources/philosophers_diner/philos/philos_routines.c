@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:18:21 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 19:46:49 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/01 18:25:28 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,5 @@ void	*philo_routine(void *current_philo_ptr)
 
 // if (check_diner_status(current_philo) == DINER_IS_OVER)
 		// 	return (NULL);
+
+// usleep 50
