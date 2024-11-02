@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:12:03 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/01 17:27:37 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/02 20:30:23 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	philo_takes_his_time_to_eat(t_philo *philo)
 {
 	while (get_current_time() - philo->last_meal_time < philo->time_to_eat)
 	{
-		ft_usleep(500);
+		usleep(500);
 	}
 }
 
