@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/01 17:42:24 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:54:54 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ typedef enum e_philo_initialization
 	VALID_PHILO_INITIALIZATION
 }			t_philo_initialization;
 
+typedef enum e_dining_philo_status
+{
+	PHILO_MUST_STOP,
+	PHILO_CAN_CONTINUE
+}			t_dining_philo_status;
+
 typedef enum e_time_update_status
 {
 	TIME_UPDATE_ERROR = -1,
@@ -78,8 +84,7 @@ typedef enum e_philo_msg
 	PHILO_TAKES_A_FORK,
 	PHILO_IS_EATING,
 	PHILO_IS_SLEEPING,
-	PHILO_IS_THINKING,
-	PHILO_DIED
+	PHILO_IS_THINKING
 }			t_philo_msg;
 
 // STRUCTS //
@@ -107,10 +112,10 @@ typedef struct s_diner_informations
 typedef struct s_table
 {
 	volatile t_diner_status	diner_status;
-	bool					dead_alarm;
+	//bool					dead_alarm;
 	unsigned int			all_meals_eaten_list;
 	pthread_mutex_t			diner_status_mutex;
-	pthread_mutex_t			dead_alarm_mutex;
+	//pthread_mutex_t			dead_alarm_mutex;
 	pthread_mutex_t			all_meals_eaten_list_mutex;
 	pthread_mutex_t			table_microphone;
 	t_diner_informations	diner_informations;
@@ -129,6 +134,7 @@ typedef struct s_philo
 	unsigned long		time_to_eat;
 	unsigned long		time_to_sleep;
 	unsigned long		meals_number;
+	pthread_mutex_t		last_meal_time_mutex;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*left_fork;
 }				t_philo;
@@ -190,8 +196,8 @@ t_philo_initialization	init_philo_data(t_table *diner_table,
 // PHILOS_ROUTINES :
 
 void					*philo_routine(void *current_philo_ptr);
-void					even_philo_routine(t_philo *philo);
-void					odd_philo_routine(t_philo *philo);
+t_dining_philo_status	even_philo_routine(t_philo *philo);
+t_dining_philo_status	odd_philo_routine(t_philo *philo);
 
 void					philo_is_eating(t_philo *philo);
 void					philo_is_speaking(t_philo *philo, t_philo_msg message);
@@ -204,14 +210,24 @@ void					philo_puts_right_fork(t_philo *philo);
 void					philo_puts_left_fork(t_philo *philo);
 void					philo_takes_the_microphone(t_philo *philo);
 void					philo_puts_back_the_microphone(t_philo *philo);
+t_dining_philo_status	philo_checks_if_he_can_continue(t_philo *philo);
 
 void					philo_takes_a_fork_msg(t_philo *philo);
 void					philo_is_eating_msg(t_philo *philo);
 void					philo_is_sleeping_msg(t_philo *philo);
 void					philo_is_thinking_msg(t_philo *philo);
-void					philo_died_msg(t_philo *philo);
+
+t_diner_status			listen_to_what_is_happening(t_table *diner_table,
+							t_philo philos[]);
 
 int						ft_usleep(unsigned long milliseconds);
 unsigned long			get_current_time(void);
+
+// DINER MASTER
+
+void					diner_master_tells_a_philo_has_died(t_philo *philo);
+void					diner_master_takes_the_microphone(t_table *diner_table);
+void					diner_master_puts_back_the_microphone(
+							t_table *diner_table);
 
 #endif

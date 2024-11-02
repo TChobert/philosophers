@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_speaking_functions.c                        :+:      :+:    :+:   */
+/*   diner_master_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 16:51:58 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/02 17:09:10 by tchobert         ###   ########.fr       */
+/*   Created: 2024/11/02 17:08:50 by tchobert          #+#    #+#             */
+/*   Updated: 2024/11/02 17:14:59 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_takes_a_fork_msg(t_philo *philo)
+void	diner_master_tells_a_philo_has_died(t_philo *philo)
 {
-	printf("%ld %d has taken a fork\n", get_current_time(), philo->id);
+	printf("%ld %d died\n", get_current_time(), philo->id);
 }
 
-void	philo_is_eating_msg(t_philo *philo)
+void	diner_master_takes_the_microphone(t_table *diner_table)
 {
-	printf("%ld %d is eating\n", get_current_time(), philo->id);
+	pthread_mutex_lock(&diner_table->table_microphone);
 }
 
-void	philo_is_sleeping_msg(t_philo *philo)
+void	diner_master_puts_back_the_microphone(t_table *diner_table)
 {
-	printf("%ld %d is sleeping\n", get_current_time(), philo->id);
-}
-
-void	philo_is_thinking_msg(t_philo *philo)
-{
-	printf("%ld %d is thinking\n", get_current_time(), philo->id);
+	pthread_mutex_unlock(&diner_table->table_microphone);
 }

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:25:05 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/01 17:49:37 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/02 15:30:10 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,8 @@ t_diner_status	host_launch_the_diner(t_table *diner_table, t_philo philos[])
 	{
 		return (DINER_IS_CANCELED);
 	}
-	while (1)
-	{
-	}
+	// while (1)
+	// {
+	// }
 	return (DINER_IS_RUNNING);
 }
-
-
-// SEPARER LES DEUX BOUCLES !!
-// START TIME AVANT THREAD

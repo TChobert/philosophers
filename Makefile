@@ -47,6 +47,7 @@ SRCS_DIR += ./sources/parsing
 SRCS_DIR += ./sources/philosophers_diner
 SRCS_DIR += ./sources/philosophers_diner/host
 SRCS_DIR += ./sources/philosophers_diner/philos
+SRCS_DIR += ./sources/philosophers_diner/diner_master
 SRCS_DIR += ./sources/philosophers_diner/diner_utils
 
 # main #
@@ -88,7 +89,13 @@ SRCS += microphone_usage.c
 SRCS += philo_is_speaking.c
 SRCS += philo_is_thinking.c
 SRCS += philo_is_sleeping.c
+SRCS += philo_checks_if_he_can_continue.c
 SRCS += philos_speaking_functions.c
+
+# diner master #
+
+SRCS += diner_master.c
+SRCS += diner_master_utils.c
 
 # diner utils #
 

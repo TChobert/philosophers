@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:28:23 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/28 13:17:32 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:20:38 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ static t_diner_status	put_forks_on_the_table(t_table *diner_table)
 
 static t_diner_status	init_table_mutexes(t_table *diner_table)
 {
-	if (pthread_mutex_init(&diner_table->dead_alarm_mutex, NULL) != 0
+	if (pthread_mutex_init(&diner_table->diner_status_mutex, NULL) != 0
 		|| pthread_mutex_init(&diner_table->all_meals_eaten_list_mutex,
-		NULL) != 0)
+		NULL) != 0
+		|| pthread_mutex_init(&diner_table->table_microphone, NULL) != 0)
 	{
 		ft_putstr_fd("An error occurs while intialising the table mutexes.\n",
 			STDERR_FILENO);
@@ -51,7 +52,7 @@ t_diner_status	host_set_the_table_for_the_diner(t_table *diner_table)
 			STDERR_FILENO);
 		return (DINER_IS_CANCELED);
 	}
-	diner_table->dead_alarm = false;
+	//diner_table->dead_alarm = false;
 	diner_table->all_meals_eaten_list = 0;
 	return (init_table_mutexes(diner_table));
 }

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:44:29 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/31 19:39:58 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/02 19:43:25 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	diner_story(t_input_data *input_data)
 {
 	t_table					diner_table;
 	t_philo					philos[MAX_PHILOSOPHERS];
-	//t_diner_status			diner_master;
+	t_diner_status			diner_master;
 
 	if (host_get_diner_informations(input_data, &diner_table.diner_informations)
 		== DINER_IS_CANCELED)
@@ -61,10 +61,12 @@ int	diner_story(t_input_data *input_data)
 		return (EXIT_FAILURE);
 	if (host_launch_the_diner(&diner_table, philos) == DINER_IS_CANCELED)
 		return (EXIT_FAILURE);
-	// while (diner_master != DINER_IS_OVER)
-	// {
-	// 	diner_master = listen_to_what_is_happening(&diner_table, philos);
-	// }
+	diner_master = DINER_IS_RUNNING;
+	while (diner_master != DINER_IS_OVER)
+	{
+		diner_master = listen_to_what_is_happening(&diner_table, philos);
+		usleep(50);
+	}
 	if (host_close_the_diner(&diner_table, philos) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (host_clean_the_diner_table(&diner_table));
