@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/02 18:54:54 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:37:40 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,12 @@ void					philo_puts_left_fork(t_philo *philo);
 void					philo_takes_the_microphone(t_philo *philo);
 void					philo_puts_back_the_microphone(t_philo *philo);
 t_dining_philo_status	philo_checks_if_he_can_continue(t_philo *philo);
+
+void					even_philo_puts_forks(t_philo *philo);
+void					odd_philo_puts_forks(t_philo *philo);
+void					philo_says_he_tooks_two_forks(t_philo *philo);
+void					odd_philo_takes_forks(t_philo *philo);
+void					even_philo_takes_forks(t_philo *philo);
 
 void					philo_takes_a_fork_msg(t_philo *philo);
 void					philo_is_eating_msg(t_philo *philo);

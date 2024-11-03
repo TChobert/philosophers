@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:18:21 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/02 20:23:21 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:57:19 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*philo_routine(void *current_philo_ptr)
 	current_philo = (t_philo *)current_philo_ptr;
 	update_last_meal_time(current_philo);
 	if (current_philo->id % 2 != 0)
-		ft_usleep(current_philo->time_to_eat / 2);
+		ft_usleep(current_philo->time_to_eat);
 	while (check_diner_status(current_philo_ptr) != DINER_IS_OVER)
 	{
 		if (current_philo->id % 2 == 0)

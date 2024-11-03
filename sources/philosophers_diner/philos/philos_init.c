@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:11:29 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/02 19:54:40 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:47:07 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_philo_initialization	give_forks_to_current_philo(
 	{
 		return (INVALID_PHILO_INITIALIZATION);
 	}
-	if (id == diner_table->diner_informations.philos_number)
+	if (id == diner_table->diner_informations.philos_number - 1)
 	{
 		current_philo->right_fork = &diner_table->forks[0];
 	}
