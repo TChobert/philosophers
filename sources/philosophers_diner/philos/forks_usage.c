@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:10:48 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/03 15:51:47 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 18:47:45 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	odd_philo_puts_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->right_fork);
+	usleep(10);
 	pthread_mutex_unlock(philo->left_fork);
 }
 
 void	even_philo_puts_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->left_fork);
+	usleep(10);
 	pthread_mutex_unlock(philo->right_fork);
 }
 
