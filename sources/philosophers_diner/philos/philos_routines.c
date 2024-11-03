@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:18:21 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/03 15:57:19 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:47:53 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	*philo_routine(void *current_philo_ptr)
 		ft_usleep(current_philo->time_to_eat);
 	while (check_diner_status(current_philo_ptr) != DINER_IS_OVER)
 	{
+		if (philo_checks_if_he_can_continue(current_philo) == PHILO_MUST_STOP)
+			return (NULL);
 		if (current_philo->id % 2 == 0)
 		{
-			if (even_philo_routine(current_philo) == PHILO_MUST_STOP)
-				break ;
+			even_philo_routine(current_philo);
 		}
 		if (current_philo-> id % 2 != 0)
 		{
-			if (odd_philo_routine(current_philo) == PHILO_MUST_STOP)
-				break ;
+			odd_philo_routine(current_philo);
 		}
 	}
 	return (NULL);

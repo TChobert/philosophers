@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/03 15:37:40 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:49:37 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 // DEFINES //
 
 # define MAX_PHILOSOPHERS 200
+# define NO_MEALS_REQUIERED 0UL
 
 // ENUMS //
 
@@ -127,7 +128,7 @@ typedef struct s_philo
 	pthread_t			thread_id;
 	t_table				*table;
 	unsigned int		id;
-	bool				dead_flag;
+	bool				is_full;
 	unsigned long		last_meal_time;
 	unsigned long		number_of_meals_eaten;
 	unsigned long		time_to_die;
@@ -135,6 +136,7 @@ typedef struct s_philo
 	unsigned long		time_to_sleep;
 	unsigned long		meals_number;
 	pthread_mutex_t		last_meal_time_mutex;
+	pthread_mutex_t		is_full_mutex;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*left_fork;
 }				t_philo;
@@ -237,3 +239,11 @@ void					diner_master_puts_back_the_microphone(
 							t_table *diner_table);
 
 #endif
+
+// 5 800 200 200
+// 1 800 200 200 die
+// 5 800 200 200 7
+// 4 410 200 200
+// 4 310 200 100 DIE
+
+// 2 200 100 100
