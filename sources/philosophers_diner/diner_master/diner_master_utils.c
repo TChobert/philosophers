@@ -6,24 +6,69 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:08:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/04 15:24:01 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:06:54 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	diner_master_tells_a_philo_has_died(t_philo *philo)
+unsigned long	diner_master_gets_philo_last_meal_time(t_philo *philo)
 {
-	printf("%ld %d died\n", get_current_time() - philo->table->diner_start_time,
-			philo->id);
+	unsigned long	philo_last_meal_time;
+
+	pthread_mutex_lock(&philo->last_meal_time_mutex);
+	philo_last_meal_time = philo->last_meal_time;
+	pthread_mutex_unlock(&philo->last_meal_time_mutex);
+	return (philo_last_meal_time);
 }
 
-void	diner_master_takes_the_microphone(t_table *diner_table)
+static t_diner_status	diner_master_checks_time_to_death(t_table *diner_table,
+					t_philo philos[])
 {
-	pthread_mutex_lock(&diner_table->table_microphone);
+	const unsigned long	current_time = get_current_time();
+	unsigned long		philo_last_meal_time;
+	size_t				i;
+
+	i = 0;
+	while (i < diner_table->diner_informations.philos_number)
+	{
+		philo_last_meal_time
+			= diner_master_gets_philo_last_meal_time(&philos[i]);
+		if (current_time - philo_last_meal_time > diner_table
+			->diner_informations.time_to_die)
+		{
+			diner_master_stops_the_diner(diner_table);
+			diner_master_tells_who_is_dead(diner_table, &philos[i]);
+			return (DINER_IS_OVER);
+		}
+		++i;
+	}
+	return (DINER_IS_RUNNING);
 }
 
-void	diner_master_puts_back_the_microphone(t_table *diner_table)
+static bool	diner_master_checks_if_philo_is_full(t_philo *philo)
 {
-	pthread_mutex_unlock(&diner_table->table_microphone);
+	bool	philo_is_full;
+
+	pthread_mutex_lock(&philo->is_full_mutex);
+	philo_is_full = philo->is_full;
+	pthread_mutex_unlock(&philo->is_full_mutex);
+	return (philo_is_full);
+}
+
+static t_diner_status	diner_master_checks_number_of_meals(
+							t_table *diner_table,
+							t_philo philos[])
+{
+	size_t	i;
+
+	i = 0;
+	while (i < diner_table->diner_informations.philos_number)
+	{
+		if (diner_master_checks_if_philo_is_full(&philos[i]) == false)
+			return (DINER_IS_RUNNING);
+		++i;
+	}
+	diner_master_stops_the_diner(diner_table);
+	return (DINER_IS_OVER);
 }

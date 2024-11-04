@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:12:03 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/04 15:57:33 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:08:04 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	philo_eats(t_philo *philo)
 
 void	philo_is_eating(t_philo *philo)
 {
-	update_last_meal_time(philo); // start
+	update_last_meal_time(philo);
 	philo_takes_the_microphone(philo);
 	philo_is_speaking(philo, PHILO_IS_EATING);
 	philo_puts_back_the_microphone(philo);

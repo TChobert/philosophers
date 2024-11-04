@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:14:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/03 16:16:15 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:09:21 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static unsigned long	get_philo_nap_start(void)
 	return (nap_start);
 }
 
-static void	philo_takes_his_time_to_sleep(t_philo *philo, unsigned long nap_start)
+static void	philo_takes_his_time_to_sleep(t_philo *philo,
+				unsigned long nap_start)
 {
 	while (get_current_time() - nap_start < philo->time_to_sleep)
 	{

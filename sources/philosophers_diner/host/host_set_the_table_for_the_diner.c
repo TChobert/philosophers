@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:28:23 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/04 15:38:58 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:00:12 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,5 @@ t_diner_status	host_set_the_table_for_the_diner(t_table *diner_table)
 		return (DINER_IS_CANCELED);
 	}
 	diner_table->diner_status = DINER_IS_RUNNING;
-	//diner_table->all_meals_eaten_list = 0;
 	return (init_table_mutexes(diner_table));
 }
-
-//|| pthread_mutex_init(&diner_table->all_meals_eaten_list_mutex,
-		//NULL) != 0
