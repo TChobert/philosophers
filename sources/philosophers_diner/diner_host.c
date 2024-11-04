@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:44:29 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/02 19:43:25 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:37:32 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ int	diner_story(t_input_data *input_data)
 		return (EXIT_FAILURE);
 	if (host_launch_the_diner(&diner_table, philos) == DINER_IS_CANCELED)
 		return (EXIT_FAILURE);
-	diner_master = DINER_IS_RUNNING;
-	while (diner_master != DINER_IS_OVER)
+	if (diner_table.diner_informations.philos_number > 1)
 	{
-		diner_master = listen_to_what_is_happening(&diner_table, philos);
-		usleep(50);
+		diner_master = DINER_IS_RUNNING;
+		while (diner_master != DINER_IS_OVER)
+		{
+			diner_master = listen_to_what_is_happening(&diner_table, philos);
+			usleep(10);
+		}
 	}
 	if (host_close_the_diner(&diner_table, philos) == EXIT_FAILURE)
 		return (EXIT_FAILURE);

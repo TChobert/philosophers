@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:12:03 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/03 18:04:08 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:57:33 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,3 @@ void	philo_is_eating(t_philo *philo)
 	philo_updates_his_number_of_meals_eaten(philo);
 	philo_eats(philo);
 }
-
-//sleep tant que current - last_meal_time < time_to_eat

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/03 17:49:37 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:52:00 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,8 @@ typedef struct s_diner_informations
 typedef struct s_table
 {
 	volatile t_diner_status	diner_status;
-	//bool					dead_alarm;
-	unsigned int			all_meals_eaten_list;
+	unsigned long			diner_start_time;
 	pthread_mutex_t			diner_status_mutex;
-	//pthread_mutex_t			dead_alarm_mutex;
-	pthread_mutex_t			all_meals_eaten_list_mutex;
 	pthread_mutex_t			table_microphone;
 	t_diner_informations	diner_informations;
 	pthread_mutex_t			forks[MAX_PHILOSOPHERS];

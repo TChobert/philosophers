@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:08:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/02 17:14:59 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:24:01 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	diner_master_tells_a_philo_has_died(t_philo *philo)
 {
-	printf("%ld %d died\n", get_current_time(), philo->id);
+	printf("%ld %d died\n", get_current_time() - philo->table->diner_start_time,
+			philo->id);
 }
 
 void	diner_master_takes_the_microphone(t_table *diner_table)
