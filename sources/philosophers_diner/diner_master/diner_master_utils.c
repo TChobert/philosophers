@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:08:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/04 18:06:54 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:18:07 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned long	diner_master_gets_philo_last_meal_time(t_philo *philo)
 	return (philo_last_meal_time);
 }
 
-static t_diner_status	diner_master_checks_time_to_death(t_table *diner_table,
+t_diner_status	diner_master_checks_time_to_death(t_table *diner_table,
 					t_philo philos[])
 {
 	const unsigned long	current_time = get_current_time();
@@ -46,7 +46,7 @@ static t_diner_status	diner_master_checks_time_to_death(t_table *diner_table,
 	return (DINER_IS_RUNNING);
 }
 
-static bool	diner_master_checks_if_philo_is_full(t_philo *philo)
+bool	diner_master_checks_if_philo_is_full(t_philo *philo)
 {
 	bool	philo_is_full;
 
@@ -56,7 +56,7 @@ static bool	diner_master_checks_if_philo_is_full(t_philo *philo)
 	return (philo_is_full);
 }
 
-static t_diner_status	diner_master_checks_number_of_meals(
+t_diner_status	diner_master_checks_number_of_meals(
 							t_table *diner_table,
 							t_philo philos[])
 {
@@ -71,4 +71,11 @@ static t_diner_status	diner_master_checks_number_of_meals(
 	}
 	diner_master_stops_the_diner(diner_table);
 	return (DINER_IS_OVER);
+}
+
+void	diner_master_stops_the_diner(t_table *diner_table)
+{
+	pthread_mutex_lock(&diner_table->diner_status_mutex);
+	diner_table->diner_status = DINER_IS_OVER;
+	pthread_mutex_unlock(&diner_table->diner_status_mutex);
 }

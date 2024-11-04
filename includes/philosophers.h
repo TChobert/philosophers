@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/04 14:52:00 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:23:43 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,43 +140,43 @@ typedef struct s_philo
 
 // TYPEDEFS //
 
-typedef	void (* t_speaking_functions)(t_philo *);
+typedef void (*	t_speaking_functions)(t_philo *);
 
 // PROTOTYPES //
 
 // PARSING :
 
-int					philo(char **user_input);
+int						philo(char **user_input);
 
-t_input_status		arguments_parser(char **arguments,
-						t_input_data *input_data);
-t_argument_status	check_and_get_philos_number(
-						const char *philos_input_number,
-						t_input_data *input_data);
-t_argument_status	check_and_get_time_to_die(
-						const char *time_to_die_input,
-						t_input_data *input_data);
-t_argument_status	check_and_get_time_to_eat(const char *time_to_eat_input,
-						t_input_data *input_data);
-t_argument_status	check_and_get_time_to_sleep(
-						const char *time_to_sleep_input,
-						t_input_data *input_data);
-t_argument_status	check_and_get_number_of_meals(
-						const char *meals_input_number,
-						t_input_data *input_data);
-void				display_invalid_meals_number_msg(void);
-void				display_invalid_time_to_sleep_msg(void);
-void				display_invalid_time_to_eat_msg(void);
-void				display_invalid_time_to_die_msg(void);
-void				display_invalid_philos_number_msg(void);
+t_input_status			arguments_parser(char **arguments,
+							t_input_data *input_data);
+t_argument_status		check_and_get_philos_number(
+							const char *philos_input_number,
+							t_input_data *input_data);
+t_argument_status		check_and_get_time_to_die(
+							const char *time_to_die_input,
+							t_input_data *input_data);
+t_argument_status		check_and_get_time_to_eat(const char *time_to_eat_input,
+							t_input_data *input_data);
+t_argument_status		check_and_get_time_to_sleep(
+							const char *time_to_sleep_input,
+							t_input_data *input_data);
+t_argument_status		check_and_get_number_of_meals(
+							const char *meals_input_number,
+							t_input_data *input_data);
+void					display_invalid_meals_number_msg(void);
+void					display_invalid_time_to_sleep_msg(void);
+void					display_invalid_time_to_eat_msg(void);
+void					display_invalid_time_to_die_msg(void);
+void					display_invalid_philos_number_msg(void);
 
-bool				str_is_digit(const char *str);
-bool				ft_is_digit(const int c);
-long				ft_atol(const char *nptr, unsigned int *overflow_flag);
-void				display_parsing_errors(
-						t_parsing_error_status parsing_error);
-size_t				ft_strlen(const char *str);
-void				ft_putstr_fd(char *s, int fd);
+bool					str_is_digit(const char *str);
+bool					ft_is_digit(const int c);
+long					ft_atol(const char *nptr, unsigned int *overflow_flag);
+void					display_parsing_errors(
+							t_parsing_error_status parsing_error);
+size_t					ft_strlen(const char *str);
+void					ft_putstr_fd(char *s, int fd);
 
 // DINER :
 
@@ -230,7 +230,18 @@ unsigned long			get_current_time(void);
 
 // DINER MASTER
 
+unsigned long			diner_master_gets_philo_last_meal_time(t_philo *philo);
+t_diner_status			diner_master_checks_time_to_death(t_table *diner_table,
+							t_philo philos[]);
+bool					diner_master_checks_if_philo_is_full(t_philo *philo);
+t_diner_status			diner_master_checks_number_of_meals(
+							t_table *diner_table,
+							t_philo philos[]);
+void					diner_master_stops_the_diner(t_table *diner_table);
+
 void					diner_master_tells_a_philo_has_died(t_philo *philo);
+void					diner_master_tells_who_is_dead(t_table *diner_table,
+							t_philo *philo);
 void					diner_master_takes_the_microphone(t_table *diner_table);
 void					diner_master_puts_back_the_microphone(
 							t_table *diner_table);

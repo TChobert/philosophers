@@ -76,7 +76,7 @@ SRCS += host_get_diner_informations.c
 SRCS += host_launch_the_diner.c
 SRCS += update_last_meal_time.c
 SRCS += get_current_time.c
-SRCS += philos_init.c ## RENAME !!
+SRCS += philos_init.c
 
 # philos #
 
@@ -95,6 +95,7 @@ SRCS += philos_speaking_functions.c
 # diner master #
 
 SRCS += diner_master.c
+SRCS += diner_master_is_speaking.c
 SRCS += diner_master_utils.c
 
 # diner utils #

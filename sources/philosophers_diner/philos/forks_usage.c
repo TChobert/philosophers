@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:10:48 by tchobert          #+#    #+#             */
-/*   Updated: 2024/11/04 18:08:25 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:20:20 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	odd_philo_puts_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->right_fork);
-	usleep(10);
+	usleep(4);
 	pthread_mutex_unlock(philo->left_fork);
 }
 
