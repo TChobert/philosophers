@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_checks_if_he_can_continue.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:09:26 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/25 18:28:22 by tchobert         ###   ########.fr       */
+/*   Created: 2024/11/02 17:58:14 by tchobert          #+#    #+#             */
+/*   Updated: 2024/11/04 18:11:35 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	philo(char **user_input)
+t_dining_philo_status	philo_checks_if_he_can_continue(t_philo *philo)
 {
-	t_input_data	input_data;
+	t_dining_philo_status	check_status;
 
-	if (arguments_parser(user_input, &input_data) == INVALID_INPUT)
-		return (EXIT_FAILURE);
-	if (diner_story(&input_data) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac < 5 || ac > 6)
-		return (EXIT_FAILURE);
-	return (philo(av + 1));
+	check_status = PHILO_CAN_CONTINUE;
+	pthread_mutex_lock(&philo->table->diner_status_mutex);
+	if (philo->table->diner_status == DINER_IS_OVER)
+	{
+		check_status = PHILO_MUST_STOP;
+	}
+	pthread_mutex_unlock(&philo->table->diner_status_mutex);
+	return (check_status);
 }

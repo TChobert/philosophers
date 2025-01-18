@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:08:41 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/18 13:15:33 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:54:11 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ t_input_status	arguments_parser(char **user_input,
 			== INVALID_ARGUMENT)
 			return (INVALID_INPUT);
 	}
+	else
+		input_data->meals_number = NO_MEALS_REQUIERED;
 	return (VALID_INPUT);
 }

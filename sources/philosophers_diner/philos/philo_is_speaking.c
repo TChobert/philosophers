@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_is_speaking.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:09:26 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/25 18:28:22 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/28 14:42:08 by tchobert          #+#    #+#             */
+/*   Updated: 2024/11/03 14:47:39 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	philo(char **user_input)
+void	philo_is_speaking(t_philo *philo, t_philo_msg message)
 {
-	t_input_data	input_data;
+	static t_speaking_functions	philo_speaking_functions[] = {
+		philo_takes_a_fork_msg,
+		philo_is_eating_msg,
+		philo_is_sleeping_msg,
+		philo_is_thinking_msg
+	};
 
-	if (arguments_parser(user_input, &input_data) == INVALID_INPUT)
-		return (EXIT_FAILURE);
-	if (diner_story(&input_data) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac < 5 || ac > 6)
-		return (EXIT_FAILURE);
-	return (philo(av + 1));
+	if (philo_checks_if_he_can_continue(philo) != PHILO_MUST_STOP)
+		philo_speaking_functions[message](philo);
 }

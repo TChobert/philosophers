@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   odd_philo_routine.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:09:26 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/25 18:28:22 by tchobert         ###   ########.fr       */
+/*   Created: 2024/10/28 18:42:13 by tchobert          #+#    #+#             */
+/*   Updated: 2024/11/04 18:10:00 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	philo(char **user_input)
+static void	odd_philo_is_eating(t_philo *philo)
 {
-	t_input_data	input_data;
-
-	if (arguments_parser(user_input, &input_data) == INVALID_INPUT)
-		return (EXIT_FAILURE);
-	if (diner_story(&input_data) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	odd_philo_takes_forks(philo);
+	philo_is_eating(philo);
+	odd_philo_puts_forks(philo);
 }
 
-int	main(int ac, char **av)
+t_dining_philo_status	odd_philo_routine(t_philo *philo)
 {
-	if (ac < 5 || ac > 6)
-		return (EXIT_FAILURE);
-	return (philo(av + 1));
+	odd_philo_is_eating(philo);
+	philo_is_sleeping(philo);
+	philo_is_thinking(philo);
+	return (philo_checks_if_he_can_continue(philo));
 }

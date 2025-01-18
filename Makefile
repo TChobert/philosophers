@@ -31,10 +31,24 @@ ifeq ($(d), 3)
 		CFLAGS = Weverything
 endif
 
+ifeq ($(d), 4)
+		CFLAGS += -g3
+		CFLAGS += -O0
+endif
+
+ifeq ($(d), 5)
+		CFLAGS += -fsanitize=thread -g3
+endif
+
 ## SOURCES ##
 
 SRCS_DIR += ./sources
 SRCS_DIR += ./sources/parsing
+SRCS_DIR += ./sources/philosophers_diner
+SRCS_DIR += ./sources/philosophers_diner/host
+SRCS_DIR += ./sources/philosophers_diner/philos
+SRCS_DIR += ./sources/philosophers_diner/diner_master
+SRCS_DIR += ./sources/philosophers_diner/diner_utils
 
 # main #
 
@@ -54,6 +68,40 @@ SRCS += errors_displaying_utils.c
 SRCS += errors_messages.c
 SRCS += ft_atol.c
 
+# run diner #
+
+SRCS += diner_host.c
+SRCS += host_set_the_table_for_the_diner.c
+SRCS += host_get_diner_informations.c
+SRCS += host_launch_the_diner.c
+SRCS += update_last_meal_time.c
+SRCS += get_current_time.c
+SRCS += philos_init.c
+
+# philos #
+
+SRCS += philos_routines.c
+SRCS += even_philo_routine.c
+SRCS += odd_philo_routine.c
+SRCS += philo_is_eating.c
+SRCS += forks_usage.c
+SRCS += microphone_usage.c
+SRCS += philo_is_speaking.c
+SRCS += philo_is_thinking.c
+SRCS += philo_is_sleeping.c
+SRCS += philo_checks_if_he_can_continue.c
+SRCS += philos_speaking_functions.c
+
+# diner master #
+
+SRCS += diner_master.c
+SRCS += diner_master_is_speaking.c
+SRCS += diner_master_utils.c
+
+# diner utils #
+
+SRCS += ft_usleep.c
+
 vpath %.c $(SRCS_DIR)
 
 ## SOURCES TESTS ##
@@ -62,10 +110,13 @@ TESTS_NAME := unit_tests
 
 TESTS_SRCS_DIR += ./tests
 TESTS_SRCS_DIR += ./tests/parsing
+TESTS_SRCS_DIR += ./tests/diner
 
 TESTS_SRCS += main_tests.c
 TESTS_SRCS += tests_check_and_get_meals_number.c
 TESTS_SRCS += tests_check_and_get_philos_number.c
+TESTS_SRCS += test_host_get_diner_informations.c
+TESTS_SRCS += test_host_set_the_table_for_the_diner.c
 
 UNITY_SRC := Unity/src/unity.c
 
